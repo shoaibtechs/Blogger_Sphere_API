@@ -5,6 +5,13 @@ const path = require("path");
 const{v4: uuidv4} =  require("uuid");
 
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+
+app.use(express.static(path.join(__dirname, "public")));
+
+
 const blogs = [
   {
     id: uuidv4(),
@@ -57,6 +64,16 @@ app.get("/", (req, res)=>{
 app.get("/blogs", (req, res)=>{
 
     res.render("index", {blogs});
+
+
+
+
+})
+
+
+app.get("/blogs/new",(req, res)=>{
+
+    res.render("new");
 
 
 
