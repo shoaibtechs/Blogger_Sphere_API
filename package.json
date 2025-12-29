@@ -1,0 +1,16 @@
+{
+  "name": "4_blogger_sphere_api",
+  "version": "1.0.0",
+  "description": "Blogger-Sphere API A robust RESTful Backend API for a blogging platform. Built to master the fundamentals of CRUD operations, dynamic routing, and server-side logic using Node.js, Express, and EJS. Features include unique identifier management with UUID and support for non-standard HTTP verbs via Method-Override.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.2.1"
+  }
+}
