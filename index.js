@@ -10,7 +10,7 @@ app.set("views", path.join(__dirname, "views"));
 
 
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(express.urlencoded({extended:true}));
 
 const blogs = [
   {
@@ -75,6 +75,18 @@ app.get("/blogs/new",(req, res)=>{
 
     res.render("new");
 
+
+
+
+})
+
+app.post("/blogs", (req, res)=>{
+
+    let{title, content, author, category} = req.body;
+    let id = uuidv4();
+    blogs.push({id, title, content, author, category});
+
+    res.redirect("/blogs");
 
 
 
