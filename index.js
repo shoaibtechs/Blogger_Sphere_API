@@ -3,16 +3,16 @@ const app = express();
 const port = 8080;
 const path = require("path");
 const{v4: uuidv4} =  require("uuid");
-
+const methodOverride = require("method-override");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
 
-const blogs = [
+let blogs = [
   {
     id: uuidv4(),
     title: "Why MERN Stack is King in 2025",
@@ -67,7 +67,6 @@ app.get("/blogs", (req, res)=>{
 
 
 
-
 })
 
 
@@ -77,8 +76,8 @@ app.get("/blogs/new",(req, res)=>{
 
 
 
-
 })
+
 
 app.post("/blogs", (req, res)=>{
 
@@ -91,3 +90,55 @@ app.post("/blogs", (req, res)=>{
 
 
 })
+
+
+app.get("/blogs/:id", (req, res)=>{
+
+    let {id} = req.params;
+    let blog =  blogs.find((b)=> id === b.id);
+
+    res.render("show", {blog});
+
+
+
+
+})
+
+
+app.get("/blogs/:id/edit", (req, res)=>{
+
+    let {id} = req.params;
+    let blog =  blogs.find((b)=> id === b.id);
+    res.render("edit", {blog});
+
+
+
+})
+
+
+app.patch("/blogs/:id", (req, res)=>{
+
+
+  let{id} =  req.params;
+  let newContent =  req.body.content;
+  let blog = blogs.find((b)=> id ===b.id);
+  console.log(blog);
+  blog.content =  newContent;
+
+  res.redirect("/blogs");
+
+
+})
+
+
+app.delete("/blogs/:id", (req, res)=>{
+
+
+  let{id} =  req.params;
+  blogs = blogs.filter((b)=> id !==b.id);
+  res.redirect("/blogs");
+
+
+
+})
+
