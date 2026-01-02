@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Edit Blog</h1>
+   
+     <div class="content">
+    
+    
+        <h2>Id: <%=blog.id%></h2>
+        <h2>Title: <%= blog.title %> </h2>
+        <h3>Author: @<%= blog.author %> </h3>
+        <h3>Category: <%=blog.category %> </h3>
+       
+        
+        <form method="post" action="/blogs/<%=blog.id%>?_method=PATCH">
+
+          
+             <textarea rows="15" cols="35"  name="content"><%=blog.content %> </textarea>
+        
+            <button>Submit</button>
+
+        </form>
+            
+
+
+       </div>
+
+
+
+
+
+</body>
+</html>
